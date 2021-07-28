@@ -1,0 +1,81 @@
+\documentclass[
+  english,
+  a4paper, 
+  checkmode=check,
+  pagemark,
+  stamp]{sdapsclassic}
+\usepackage[utf8]{inputenc}
+% For demonstration purposes
+\usepackage{multicol}
+
+\usepackage{xltxtra}
+\setmainfont{IPAPMincho}
+\setsansfont{IPAPGothic}
+\setmonofont{IPAGothic}
+\XeTeXlinebreaklocale "ja"
+
+\author{YasuhiroABE <yasu@yasundial.org>}
+\title{TestCase(テストケース) for docker.io/yasuhiroabe/sdap-ja}
+
+\begin{document}
+\begin{questionnaire}[noinfo]
+
+  \section{Singile-choice TestCases / 単一選択テストケース}
+  \singlemark{singlemark test}{Yes/はい}{No/いいえ}
+  \singlemarkother [var=singlemarkothervar,count=6] {singlemarkother test} {lower/下限} {upper/上限} {other/その他}
+  \textbox[var=textboxvar]{0.5cm}{textbox test}
+  \begin{choicequestion}[cols=3,singlechoice] {choicequestion test}
+    \choiceitem{choiceitem test}
+    \choicemulticolitem{2}{choicemulticolitem test}
+  \end{choicequestion}
+  \begin{choicegroup} [singlechoice] {choicegroup test}
+    \choice{choice1/選択1}
+    \choice{choice2/選択2}
+    \question{question1/質問1}
+    \question{question2/質問2}
+  \end{choicegroup}
+  \begin{optionquestion}[cols=3,singlechoice]{optionquestion test}
+    \choiceitem{choiceitem}
+    \choicemulticolitem{2}{choicemulticolitem test}
+  \end{optionquestion}
+  \begin{optiongroup}[singlechoice]{optiongroup test}
+    \choice{choice1}
+    \choice{choice2}
+    \question{question1}
+    \question{question2}
+  \end{optiongroup}
+  \begin{markgroup}{markgroup test}
+    \markline{question1}{lower}{upper}
+    \markline{question2}{lower2}{upper2}
+  \end{markgroup}
+  \begin{markgroup}[other]{markgroup test with other}
+    \markline{question1}{lower}{upper}{other}
+    \markline{question2}{lower2}{upper2}{other2}
+  \end{markgroup}
+
+  \section{Multiple-choice TestCases / 複数選択テストケース}
+  
+  \begin{choicequestion}[cols=3,multichoice] {choicequestion test}
+    \choiceitem{choiceitem test}
+    \choicemulticolitem{2}{choicemulticolitem test}
+    \choiceitemtext{0.5cm}{3}{choiceitemtext test}
+  \end{choicequestion}
+  \begin{choicegroup}[multichoice] {choicegroup test}
+    \choice{choice1}
+    \choice{choice2}
+    \question{question1}
+    \question{question2}
+  \end{choicegroup}
+  \begin{optionquestion}[cols=3,multichoice]{optionquestion test}
+    \choiceitem{choiceitem}
+    \choicemulticolitem{2}{choicemulticolitem test}
+  \end{optionquestion}
+  \begin{optiongroup}[multichoice]{optiongroup test}
+    \choice{choice1}
+    \choice{choice2}
+    \question{question1}
+    \question{question2}
+  \end{optiongroup}
+  
+\end{questionnaire}
+\end{document}
