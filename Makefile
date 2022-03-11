@@ -29,6 +29,12 @@ recognize:
 		 $(DOCKER_IMAGE_NAME) \
 		 recognize work/
 
+reorder:
+	sudo docker run --rm -v `pwd`/$(WORKDIR):/proj \
+		--name $(DOCKER_RUNTIME_NAME) \
+		 $(DOCKER_IMAGE_NAME) \
+		 reorder work/
+
 reportex:
 	sudo docker run --rm -v `pwd`/$(WORKDIR):/proj \
 		--name $(DOCKER_RUNTIME_NAME) \
