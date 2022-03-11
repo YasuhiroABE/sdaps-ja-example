@@ -16,6 +16,12 @@ init:
 		 setup --add translator-sdaps-dictionary-English.dict \
 		 work/ $(TEXFILE)
 
+stamp:
+	sudo docker run --rm -v `pwd`/$(WORKDIR):/proj \
+		--name $(DOCKER_RUNTIME_NAME) \
+		 $(DOCKER_IMAGE_NAME) \
+		 stamp work/ -f id.txt
+
 TIFF_IMAGES := $(subst ./$(WORKDIR)/,,$(shell find . -name $(SHEETFILE_REGEX) ))
 add:
 	sudo docker run --rm -v `pwd`/$(WORKDIR):/proj \
