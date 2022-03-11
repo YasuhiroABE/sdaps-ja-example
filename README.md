@@ -15,8 +15,7 @@ DockerHubに登録している、``yasuhiroabe/sdaps-ja`` パッケージのテ�
 
 一連のコマンドラインは次のようになります。
 
-	$ git clone 
-	$ cd https://github.com/YasuhiroABE/sdaps-ja-example.git
+	$ git clone https://github.com/YasuhiroABE/sdaps-ja-example.git
 	$ cd sdaps-ja-example/
     $ make init
 	$ make atril  ## check the vol.proj/work/questionnaire.pdf by the atril pdf viewer.
