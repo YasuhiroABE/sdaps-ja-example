@@ -1,0 +1,23 @@
+[sdaps]
+title = TestCase(テストケース) for docker.io/yasuhiroabe/sdap-ja
+global_id = 
+
+[info]
+Author = YasuhiroABE <yasu@yasundial.org>
+
+[defs]
+# These values are not read back, they exist for information only!
+paper_width = 210.0
+paper_height = 297.0
+print_questionnaire_id = True
+print_survey_id = True
+style = qr
+duplex = False
+checkmode = check
+engine = xelatex
+
+[questionnaire]
+# These values are not read back, they exist for information only!
+page_count = 1
+survey_id = 1558406450
+
