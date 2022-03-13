@@ -5,11 +5,13 @@ DockerHubに登録している、``yasuhiroabe/sdaps-ja`` パッケージのテ�
 
 ## 前提
 
-* Intel系CPUを搭載したコンピュータで作業し、Dockerの実行環境(dockerコマンド)が準備できていること
+* Intel系CPUを搭載したコンピュータで作業し、Dockerの実行環境(dockerコマンド)が準備できていること(※)
 * Makefileの先頭にある変数を適切に変更するか、これに合わせてファイルの配置などをすること
 * 質問票のLaTeXファイルは、$(WORKDIR)/$(TEXFILE) に配置すること
 * スキャンしたTIFFファイルは、$(WORKDIR)(デフォルト:vol.proj)直下に配置すること
 * スキャンしたTIFFファイルは、``sheet*.tiff`` のネーミングルールに従うこと
+
+(※: ``yasuhiroabe/sdaps-ja:ub2004-5`` では、M1 macOSなどARM系CPU(ARM64, arm/v7)に対応しています)
 
 ## 使い方
 
@@ -39,7 +41,7 @@ DockerHubに登録している、``yasuhiroabe/sdaps-ja`` パッケージのテ�
 
 経験上はマルチページTIFF形式 300dpi程度の品質でスキャンできるドキュメント・スキャナの利用がお勧めです。
 
-PDF出力のみのドキュメントスキャナを利用する場合、テストしていませんが、sdapsはPDF形式からのTIFF変換機能を、addコマンドの``--convert``オプションで提供しています。
+PDF出力のみのドキュメントスキャナを利用する場合、sdapsはPDF形式からのTIFF変換機能を、addコマンドの``--convert``オプションで提供しています。この他の方法でTIFFイメージに変換する場合には、マルチページ白黒イメージである必要があります。
 
 ## 考慮点
 
