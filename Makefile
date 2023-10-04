@@ -9,8 +9,8 @@ DOCKER_IMAGE_NAME = yasuhiroabe/sdaps-ja:ub2204-20231004
 DOCKER_RUNTIME_NAME = sdaps-ja
 SCANNEDFILE_REGEX = ".*(pdf|tiff|tif)"
 
-.PHONY: init
-init:
+.PHONY: setup
+setup:
 	chmod a+rwx,g+s $(WORKDIR)
 	rm -rf $(WORKDIR)/work
 	$(DOCKER_CMD) run --rm -v `pwd`/$(WORKDIR):/proj \

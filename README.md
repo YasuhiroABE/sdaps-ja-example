@@ -18,18 +18,18 @@ WindowsやmacOSでも後述するセットアップを行なえば、同じ要�
 
     $ git clone https://github.com/YasuhiroABE/sdaps-ja-example.git
     $ cd sdaps-ja-example/
-    $ make init
+    $ make setup
 
-    ## GUI環境とatrilドキュメントビューアーが利用できれば、次の要領でvol.proj/work/questionnaire.pdfの内容を確認できます。
+    ## GUI環境とatrilドキュメントビューアーが利用できれば、次の要領でvol.proj/work/questionnaire.pdfの内容を確認できます。(状況によって実行できない場合は次に進んでください)
     ## If you can use the atril GUI document viewer, check the vol.proj/work/questionnaire.pdf file.
     $ make atril
 
-    ## まずvol.proj/work/questionnaire.pdfを印刷し、適宜チェック、スキャンしてください。
+    ## まずvol.proj/work/questionnaire.pdfを印刷し、回答後にスキャンしてください。
     ## Print out the vol.proj/work/questionnaire.pdf file, fill in answers, and scan it.
-    ## 次に vol.proj/sheet01.pdf などの名前で配置してください。
-    ## Then, put it to the appropriate filename, "sheet*.pdf", such as vol.proj/sheet01.pdf.
+    ## 次に PDFもしくはTIFFファイルをvol.proj/01.pdf などの名前で配置してください。
+    ## Then, put it to the appropriate filename, "*.pdf", "*.tiff", or "*.tif", such as vol.proj/01.pdf.
 
-    ## 準備ができたら、以下の要領で認識、レポート・CSVファイルの作成を行ないます。
+    ## 準備ができたら、以下の要領で認識、レポートやCSVファイルの作成を行ないます。
     $ make add
     $ make recognize
     $ make reportex
@@ -75,7 +75,7 @@ macOSのPDFビューアーを利用してください。
 ## 使用機材
 
 * ドキュメント・スキャナ: Brother ADS-3600W
-* Windows上でのマルチページTIFFファイルの閲覧・編集ソフトウェア: IrfanView v4.58 (64bit)
+* Windows上でのマルチページTIFFファイルの閲覧・編集ソフトウェア: IrfanView v4.59 (64bit)
 * Docker実行環境: VMware Workstation 17 Pro & Ubuntu 22.04 LTS
 
 経験上はマルチページTIFF形式 300dpi程度の品質でスキャンできるドキュメント・スキャナの利用がお勧めです。
