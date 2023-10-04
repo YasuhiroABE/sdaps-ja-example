@@ -19,16 +19,9 @@ init:
 		 setup tex --add translator-sdaps-dictionary-English.dict \
 		 work $(TEXFILE)
 
-vol.proj/01.tiff:
-	@echo "--------------------------------------------------"
-	@echo "Please place the scanned sheet as vol.proj/01.tiff"
-	@echo "--------------------------------------------------"
-	@echo ""
-	exit 1
-
 .PHONY: add
 TIFF_IMAGES := $(subst ./$(WORKDIR)/,,$(shell find . -mindepth 2 -maxdepth 2 -type f -regextype posix-egrep -regex $(SCANNEDFILE_REGEX) ))
-add: vol.proj/01.tiff
+add:
 	$(DOCKER_CMD) run --rm -v `pwd`/$(WORKDIR):/proj \
 		--name $(DOCKER_RUNTIME_NAME) \
 		 $(DOCKER_IMAGE_NAME) \
