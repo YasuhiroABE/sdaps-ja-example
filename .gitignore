@@ -1,2 +1,4 @@
 *~
 /vol.proj/work
+/vol.proj/*.tif*
+/vol.proj/*.pdf

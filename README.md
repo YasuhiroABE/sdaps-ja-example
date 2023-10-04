@@ -5,39 +5,78 @@ DockerHubに登録している、``yasuhiroabe/sdaps-ja`` パッケージのテ�
 
 ## 前提
 
-* Intel系CPUを搭載したコンピュータで作業し、Dockerの実行環境(dockerコマンド)が準備できていること(※)
-* Makefileの先頭にある変数を適切に変更するか、これに合わせてファイルの配置などをすること
-* 質問票のLaTeXファイルは、$(WORKDIR)/$(TEXFILE) に配置すること
-* スキャンしたTIFFファイルは、$(WORKDIR)(デフォルト:vol.proj)直下に配置すること
-* スキャンしたTIFFファイルは、``sheet*.tiff`` のネーミングルールに従うこと
+* 質問票のLaTeXファイルは、vol.proj/ に配置している
+* スキャンしたPDFファイルは、vol.proj/questionnaire.tex に配置している
+* スキャンしたTIFF/PDFファイルは、vol.proj/01.pdf や vol.proj/02.tiff のように vol.proj/直下に配置している
 
-(※: ``yasuhiroabe/sdaps-ja:ub2004-5`` では、M1 macOSなどARM系CPU(ARM64, arm/v7)に対応しています)
+Makefile内の変数を変更することで、これらの前提は変更可能です。
 
 ## 使い方
 
-一連のコマンドラインは次のようになります。
+標準的なLinux環境でサンプルの質問票を作成し、スキャン、一連のコマンドラインは次のようになります。
+WindowsやmacOSでも後述するセットアップを行なえば、同じ要領でコマンドを実行することができます。
 
-	$ git clone https://github.com/YasuhiroABE/sdaps-ja-example.git
-	$ cd sdaps-ja-example/
+    $ git clone https://github.com/YasuhiroABE/sdaps-ja-example.git
+    $ cd sdaps-ja-example/
     $ make init
-	$ make atril  ## check the vol.proj/work/questionnaire.pdf by the atril pdf viewer.
-    ## Print out the questionnaire.pdf file, fill in answers, and scan it, then placed it by the appropriate format, such as vol.proj/sheet01.tiff.
-	$ make recognize
-	$ make reportex
-	$ make report
-	$ make csv
 
-``make init`` によって、questionnaire.tex が questionnaire.pdf に変換されます。
+    ## GUI環境とatrilドキュメントビューアーが利用できれば、次の要領でvol.proj/work/questionnaire.pdfの内容を確認できます。
+    ## If you can use the atril GUI document viewer, check the vol.proj/work/questionnaire.pdf file.
+    $ make atril
 
-これを印刷し、回答を記入し、ドキュメントスキャナーなどで、マルチページTIFF形式のファイルに保存し、sheet01.tiffのような形式で配置します。
+    ## まずvol.proj/work/questionnaire.pdfを印刷し、適宜チェック、スキャンしてください。
+    ## Print out the vol.proj/work/questionnaire.pdf file, fill in answers, and scan it.
+    ## 次に vol.proj/sheet01.pdf などの名前で配置してください。
+    ## Then, put it to the appropriate filename, "sheet*.pdf", such as vol.proj/sheet01.pdf.
 
-次に、``make recognize``などの一連のタスクを実行することで、``vol.proj/work/``ディレクトリ以下にレポート、CSVデータファイルなどが出力されます。
+    ## 準備ができたら、以下の要領で認識、レポート・CSVファイルの作成を行ないます。
+    $ make add
+    $ make recognize
+    $ make reportex
+    $ make repotlab
+    $ make csv
+
+最終的に次のようなファイルが作成されます。
+
+* vol.proj/work/report_1.pdf (レポートPDFファイル。手書き部分の内容を確認するために必要)
+* vol.proj/work/data_1.csv (CSV形式の数値データ。手書き部分は入力の有無だけが判定され、文字はreport_1.pdfで確認できる)
+
+## Windows10以降の環境で利用する場合
+
+まず Windowsは64bit版であることが必要です。(Windows11は64bit版のみが提供されており、条件を満たすので、この確認は不要です。)
+
+次にWSL2を有効にし、Microsoft Storeから、Canonicalが配布する"Ubuntu 20.04"を導入したら、Windows Terminalアプリなどでのシェルを開き、次のように必要なコマンドを入力します。(WSL2を有効にする方法はタイミングによって違いますが、最新の方法は https://docs.microsoft.com/ja-jp/windows/wsl/install を参照してください。)
+
+最後に、Docker Desktop for Windowsの導入が必要です。
+
+必要なコマンドは make, git, find, atril dockerコマンドです。
+dockerコマンドはDocker Desktopを導入したタイミングで自動的に利用できるようになるはずですが、DockerのDashboardから利用しているWSL2環境で利用できるように設定しているか確認してください。
+その他のコマンドが利用できない場合は、下記の要領で導入してください。
+
+    $ sudo apt update
+    $ sudo apt dist-upgrade
+    $ sudo apt install make git findutils
+
+Windows10環境では``make atril``を実行するためにはX Serverを別途実行し、適切に環境変数を設定する必要があります。
+
+Windows11環境ではatrilコマンドの実行に特別な制約はありません。実行する場合にはatrilコマンドを追加でインストールしてください。
+
+    $ sudo apt install atril
+
+## macOS環境で利用する場合
+
+Docker Desktop for Macを導入するだけで、その他に必要な作業はありません。
+
+標準的な環境ではターミナルからGUIが利用できないので、``make atril``は実行しないでください。
+macOSのPDFビューアーを利用してください。
+
+質問票を確認する必要があれば、Finderから vol.proj/work/questionnaire.pdf ファイルを直接操作してください。
 
 ## 使用機材
 
 * ドキュメント・スキャナ: Brother ADS-3600W
 * Windows上でのマルチページTIFFファイルの閲覧・編集ソフトウェア: IrfanView v4.58 (64bit)
-* Docker実行環境: VMware Workstation 16 Pro & Ubuntu 20.04 LTS
+* Docker実行環境: VMware Workstation 17 Pro & Ubuntu 22.04 LTS
 
 経験上はマルチページTIFF形式 300dpi程度の品質でスキャンできるドキュメント・スキャナの利用がお勧めです。
 
